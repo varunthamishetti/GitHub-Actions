@@ -1,0 +1,39 @@
+## Maven pipeline
+## Build your Java project and run tests with Apache Maven
+
+
+trigger:
+- devops-pipeline
+
+pool:
+  vmImage: ubuntu-latest
+
+
+
+steps:
+- bash: |
+    echo "branch beinchecked out is: $BUILD_SOURCEBRANCH"
+  displayName: 'Print Branch Name'
+- task: Maven@3
+  inputs:
+    mavenPomFile: '$(Agent.BuildDirectory)/s/pom.xml'
+    mavenOptions: '-Xmx3072m'
+    javaHomeOption: 'JDKVersion'
+    jdkVersionOption: '1.17'
+    jdkArchitectureOption: 'x64'
+    publishJUnitResults: true
+    testResultsFiles: '**/surefire-reports/TEST-*.xml'
+    goals: 'deploy -s $(Agent.BuildDirectory)/s/settings.xml'
+
+# - task: PublishPipelineArtifact@1
+#   inputs:
+#     targetPath: '$(Build.ArtifactStagingDirectory)'
+#     artifact: 'pie-logging'
+#test
+
+
+# - task: PublishPipelineArtifact@1
+#   inputs:
+#     targetPath: '/home/agent/'
+#     artifact: 'm2-pie-logging'
+
