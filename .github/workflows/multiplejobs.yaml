@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: install java
-      run: sudo apt install java -y
+      run: sudo apt install default-jdk
     - name: execute java command
       run: java --version >> test.txt
    test_jon:
