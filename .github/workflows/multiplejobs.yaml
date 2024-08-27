@@ -24,7 +24,7 @@ jobs:
         name: text-file
         path: test.txt
     - name: Check file content
-      run: grep -i "test" test.txt
+      run: grep -i -r "test" test.txt
 
 
    deploy_job:
