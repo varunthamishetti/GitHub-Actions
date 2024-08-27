@@ -8,7 +8,7 @@ jobs:
     - name: install java
       run: sudo apt install default-jdk
     - name: execute java command
-      run: java --version >> test.txt
+      run: java --version > test.txt
     - name: upload text file
       uses: actions/upload-artifact@v4
       with:
@@ -22,7 +22,7 @@ jobs:
       uses: actions/download-artifact@v4
       with:
         name: text-file
-        path: test.txt
+        path: ./
     - name: Check file content
       run: grep -i -r "test" test.txt || true 
 
@@ -35,6 +35,6 @@ jobs:
       uses: actions/download-artifact@v4
       with:
         name: text-file
-        path: test.txt
+        path: ./
     - name: read file
       run: cat test.txt
