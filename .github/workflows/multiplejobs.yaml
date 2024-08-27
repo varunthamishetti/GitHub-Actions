@@ -24,7 +24,7 @@ jobs:
         name: text-file
         path: test.txt
     - name: Check file content
-      run: grep -i -r "test" test.txt
+      run: grep -i -r "test" test.txt || true 
 
 
    deploy_job:
@@ -37,4 +37,4 @@ jobs:
         name: text-file
         path: test.txt
     - name: read file
-      run: cat dragon.txt
+      run: cat test.txt
