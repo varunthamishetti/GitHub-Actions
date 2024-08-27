@@ -1,0 +1,21 @@
+name: using multiple jobs in workflow
+on:
+  push
+jobs:
+   build_job:
+    runs-on: ubuntu-latest
+    steps:
+    - name: install java
+      run: sudo apt install java -y
+    - name: execute java command
+      run: java --version >> test.txt
+   test_jon:
+     runs-on: ubuntu-latest
+     steps:
+     - name: check file exist
+       run: grep -i "test" test.txt
+   deploy_job:
+    runs-on: ubuntu-latest
+    steps:
+    - name: read file
+      run: cat dragon.txt
