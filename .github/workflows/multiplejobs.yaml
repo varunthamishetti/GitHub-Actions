@@ -10,11 +10,15 @@ jobs:
     - name: execute java command
       run: java --version >> test.txt
    test_job:
-     needs: build_job
-     runs-on: ubuntu-latest
-     steps:
-     - name: check file exist
-       run: grep -i "test" test.txt
+    needs: build_job
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download test.txt artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: test-output
+      - name: Check file content
+        run: grep -i "test" test.txt
    deploy_job:
     needs: test_job
     runs-on: ubuntu-latest
