@@ -9,12 +9,14 @@ jobs:
       run: sudo apt install default-jdk
     - name: execute java command
       run: java --version >> test.txt
-   test_jon:
+   test_job:
+     needs: build_job
      runs-on: ubuntu-latest
      steps:
      - name: check file exist
        run: grep -i "test" test.txt
    deploy_job:
+    needs: test_job
     runs-on: ubuntu-latest
     steps:
     - name: read file
