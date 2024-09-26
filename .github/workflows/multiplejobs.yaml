@@ -1,6 +1,7 @@
 name: using multiple jobs in workflow
 on:
-  push
+  # push
+  workflow_dispatch:
 jobs:
    build_job:
     runs-on: ubuntu-latest
